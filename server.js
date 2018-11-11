@@ -12,17 +12,20 @@ var bell = new Doorbell();
 app.get('/', function (req, res) {
   console.log("hello")
   res.sendFile('./img.jpg');
+  
 });
 
-app.get("/capture", (req, res) => {
-  cam.captureImage(imgCaptured => {
-    if (imgCaptured) {
-      res.send("img Captured");
-    } else {
-      res.send("img not captured");
-    }
-  });
-});
+//Camera module hangs 
+
+// app.get("/capture", (req, res) => {
+//   cam.captureImage(imgCaptured => {
+//     if (imgCaptured) {
+//       res.send("img Captured");
+//     } else {
+//       res.send("img not captured");
+//     }
+//   });
+// });
 
 app.get("/ring", (req, res) => {
   bell.ring();
