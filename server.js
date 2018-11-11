@@ -10,7 +10,8 @@ var bell = new Doorbell();
 
 // reply to request with "Hello World!"
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  console.log("hello")
+  res.sendFile('./img.jpg');
 });
 
 app.get("/capture", (req, res) => {
