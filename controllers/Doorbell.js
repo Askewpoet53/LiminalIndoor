@@ -5,9 +5,9 @@ class Doorbell {
   }
 
   ring() {
-    var sys = require("sys");
-    var exec = require("child_process").exec;
-    // this.load("./Data/doorbell/ring.mp3").then(this.play);
+    // var sys = require("sys");
+    // var exec = require("child_process").exec;
+    this.load("./Data/doorbell/ring.mp3").then(this.play);
     
     
   }
