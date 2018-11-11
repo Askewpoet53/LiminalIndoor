@@ -1,5 +1,6 @@
 class Camera {
   captureImage(callback) {
+    console.log("in capture...");
     var PiCamera = require("pi-camera");
 
     var camera = new PiCamera({
@@ -14,14 +15,19 @@ class Camera {
       .snap()
       .then(result => {
         //Img captured
+        console.log("...captured");
         console.log(result);
         callback(true);
       })
       .catch(error => {
         // Handle your error
+        console.log("...error");
         console.log(error);
         callback(false);
       });
+    
+      
+
   }
 }
 module.exports = Camera;
