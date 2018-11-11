@@ -5,7 +5,7 @@ class Doorbell {
   }
 
   ring() {
-    this.load("../Data/doorbell/ring.mp3").then(this.play);
+    this.load("./Data/doorbell/ring.mp3").then(this.play);
   }
 }
 module.exports = Doorbell;
