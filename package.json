@@ -1,5 +1,5 @@
 {
-  "name": "liminal-hardware-controller",
+  "name": "LiminalIndoor",
   "version": "1.0.0",
   "description": "A simple Expressjs Web server on balena",
   "main": "server.js",
