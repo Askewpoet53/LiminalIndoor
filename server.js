@@ -30,10 +30,10 @@ app.get("/", function(req, res) {
 
 app.get("/capture", (req, res) => {});
 
-app.post("/ring", (req, res) => {
-  console.log(req.body);
+app.post("/ring/:doorID", (req, res) => {
+  console.log(req.params.doorID);
 
-  if (req.body.doorID) {
+  if (req.params.doorID) {
     cam.captureImage(imgCaptured => {
       if (imgCaptured) {
         BackController.ringDoorBell("./img.jpg", "img", result => {
