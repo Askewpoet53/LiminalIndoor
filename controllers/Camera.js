@@ -2,10 +2,11 @@ class Camera {
   captureImage(callback) {
     console.log("in capture...");
     var PiCamera = require("pi-camera");
+    // var uuid = require("uuid");
 
     var camera = new PiCamera({
       mode: "photo",
-      output: `./Data/imgs/`,
+      output: `./Data/imgs/${new Date().toLocaleTimeString}_img.jpg`,
       width: 640,
       height: 480,
       nopreview: true
