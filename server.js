@@ -44,6 +44,8 @@ app.post("/ring", (req, res) => {
         res.send("Error with camera please try again");
       }
     });
+  }else{
+    res.send("doorID not found");
   }
 });
 
