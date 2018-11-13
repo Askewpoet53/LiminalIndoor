@@ -1,6 +1,9 @@
 var express = require("express");
 var axios = require("axios");
 var app = express();
+// var bodyParser = require("body-parser");
+
+app.use(express.bodyParser())
 
 var Camera = require("./controllers/Camera");
 var Doorbell = require("./controllers/Doorbell");
