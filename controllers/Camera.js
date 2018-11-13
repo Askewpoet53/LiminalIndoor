@@ -6,7 +6,7 @@ class Camera {
 
     var camera = new PiCamera({
       mode: "photo",
-      output: `./Data/imgs/${new Date().toLocaleTimeString}_img.jpg`,
+      output: __dirname + `/Data/imgs/${new Date().toLocaleTimeString}_img.jpg`,
       width: 640,
       height: 480,
       nopreview: true
