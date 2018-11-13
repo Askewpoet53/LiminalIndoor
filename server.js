@@ -17,15 +17,15 @@ app.get('/', function (req, res) {
 
 //Camera module hangs 
 
-// app.get("/capture", (req, res) => {
-//   cam.captureImage(imgCaptured => {
-//     if (imgCaptured) {
-//       res.send("img Captured");
-//     } else {
-//       res.send("img not captured");
-//     }
-//   });
-// });
+app.get("/capture", (req, res) => {
+  cam.captureImage(imgCaptured => {
+    if (imgCaptured) {
+      res.send("img Captured");
+    } else {
+      res.send("img not captured");
+    }
+  });
+});
 
 app.get("/ring", (req, res) => {
   bell.ring();
