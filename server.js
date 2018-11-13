@@ -21,17 +21,21 @@ app.get("/", function(req, res) {
 
 app.get("/capture", (req, res) => {});
 
-app.get("/ring", (req, res) => {
-  cam.captureImage(imgCaptured => {
-    if (imgCaptured) {
-      BackController.ringDoorBell("./img.jpg", "img", result => {
-        console.log(result);
-        res.send(result);
-      });
-    } else {
-      res.send("Error with camera please try again");
-    }
-  });
+app.post("/ring", (req, res) => {
+  console.log(req);
+
+  if (req.body.doorID) {
+    cam.captureImage(imgCaptured => {
+      if (imgCaptured) {
+        BackController.ringDoorBell("./img.jpg", "img", result => {
+          console.log(result);
+          res.send(result);
+        });
+      } else {
+        res.send("Error with camera please try again");
+      }
+    });
+  }
 });
 
 //start a server on port 80 and log its start to our console

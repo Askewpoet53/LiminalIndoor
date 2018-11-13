@@ -1,6 +1,6 @@
 class BackendConnector {
   constructor() {
-    this.url = "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/";
+    this.url = "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api";
   }
 
   ringDoorBell(img, imgName, callback) {
