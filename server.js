@@ -19,14 +19,12 @@ app.get("/", function(req, res) {
 
 //Camera module hangs
 
-app.get("/capture", (req, res) => {
-  
-});
+app.get("/capture", (req, res) => {});
 
 app.get("/ring", (req, res) => {
-  cam.captureImage((imgCaptured, results) => {
+  cam.captureImage((imgCaptured, result) => {
     if (imgCaptured) {
-      console.log(resuls);
+      console.log(result);
       // BackController.ringDoorBell()
     } else {
       res.send("Error with camera please try again");
