@@ -5,7 +5,7 @@ class Camera {
 
     var camera = new PiCamera({
       mode: "photo",
-      output: `./Data/imgs/img.jpg`,
+      output: `./Data/imgs/`,
       width: 640,
       height: 480,
       nopreview: true
