@@ -1,9 +1,15 @@
 var express = require("express");
 var axios = require("axios");
 var app = express();
-// var bodyParser = require("body-parser");
+var bodyParser = require("body-parser");
 
-app.use(express.bodyParser())
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+    limit: "500mb",
+    parameterLimit: 1000000
+  })
+);
 
 var Camera = require("./controllers/Camera");
 var Doorbell = require("./controllers/Doorbell");
