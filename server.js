@@ -22,7 +22,7 @@ app.get("/", function(req, res) {
 app.get("/capture", (req, res) => {});
 
 app.post("/ring", (req, res) => {
-  console.log(req);
+  console.log(req.body);
 
   if (req.body.doorID) {
     cam.captureImage(imgCaptured => {
