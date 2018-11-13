@@ -8,7 +8,7 @@ var BackendConnector = require("./controllers/BackendConnector");
 
 var cam = new Camera();
 var bell = new Doorbell();
-var BackController = new BackendController();
+var BackController = new BackendConnector();
 // app.use(express.statis('Data/img'))
 
 // reply to request with "Hello World!"
