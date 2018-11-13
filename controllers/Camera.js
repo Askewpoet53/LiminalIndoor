@@ -5,7 +5,7 @@ class Camera {
 
     var camera = new PiCamera({
       mode: "photo",
-      output: `./img.jpg`,
+      output: `./Data/imgs/img.jpg`,
       width: 640,
       height: 480,
       nopreview: true
@@ -17,13 +17,13 @@ class Camera {
         //Img captured
         console.log("...captured");
         console.log(result);
-        callback(true, result);
+        callback(true);
       })
       .catch(error => {
         // Handle your error
         console.log("...error");
         console.log(error);
-        callback(false, result);
+        callback(false);
       });
   }
 }

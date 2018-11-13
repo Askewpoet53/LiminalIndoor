@@ -22,10 +22,12 @@ app.get("/", function(req, res) {
 app.get("/capture", (req, res) => {});
 
 app.get("/ring", (req, res) => {
-  cam.captureImage((imgCaptured, result) => {
+  cam.captureImage((imgCaptured) => {
     if (imgCaptured) {
-      console.log(result);
+      
+      // console.log(result);
       // BackController.ringDoorBell()
+
     } else {
       res.send("Error with camera please try again");
     }
