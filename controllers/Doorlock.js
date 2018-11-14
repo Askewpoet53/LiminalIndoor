@@ -36,8 +36,9 @@ class DoorLock {
 
     this.locked = true;
 
-    //Set up Servof
-
+    //Set up Servo
+    this.Gpio = require("onoff").Gpio;
+    this.motor = new Gpio(this.motorPin, "out");
     // this.button = new Gpio(buttonPin, {
     //   mode: Gpio.INPUT,
     //   pullUpDown: Gpio.PUD_DOWN,
@@ -47,48 +48,21 @@ class DoorLock {
   }
 
   lockDoor(callback) {
-    var Gpio = require("rpi-gpio");
-    var promise = Gpio.promise;
+    this.motor.writeSync(this.lockedState);
+    this.locked = true;
+    callback("door locked");
 
-    promise
-      .setup(this.motorPin, Gpio.DIR_OUT)
-      .then(() => {
-        promise.write(this.lockedState, true);
-        this.locked = true;
-        callback("Door locked");
-      })
-      .catch(err => {
-        console.log(err);
-        // return null;
-        callback("error");
-      });
-
-    //After 1.5 seconds, the door lock servo turns off to avoid stall current
-    setTimeout(function() {
-      // promise.write(0, true);
-      promise.destroy();
+    setTimeout(() => {
+      this.motor.unexport();
     }, 1500);
   }
   unlockDoor(callback) {
-    var Gpio = require("rpi-gpio");
-    var promise = Gpio.promise;
+    this.motor.writeSync(this.unlockedState);
+    this.locked = false;
+    callback("door locked");
 
-    promise
-      .setup(this.motorPin, Gpio.DIR_OUT)
-      .then(() => {
-        promise.write(this.unlockedState, true);
-        this.locked = true;
-        callback("Door unlocked");
-      })
-      .catch(err => {
-        console.log(err);
-        // return null;
-        callback("error");
-      });
-    //After 1.5 seconds, the door lock servo turns off to avoid stall current
-    setTimeout(function() {
-      // promise.write(0, true);
-      promise.destroy();
+    setTimeout(() => {
+      this.motor.unexport();
     }, 1500);
   }
 }
