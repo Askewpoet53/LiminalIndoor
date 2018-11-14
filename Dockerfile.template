@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -yq \
     alsa-utils libasound2-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN sudo apt-get update && sudo apt-get upgrade
+RUN sudo apt-get install pigpio
 
 # Defines our working directory in container
 WORKDIR /usr/src/app
