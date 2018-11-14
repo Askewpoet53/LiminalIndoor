@@ -1,6 +1,7 @@
 var express = require("express");
 var axios = require("axios");
 var app = express();
+var fs = require("fs");
 var bodyParser = require("body-parser");
 
 app.use(
@@ -14,11 +15,12 @@ app.use(
 var Camera = require("./controllers/Camera");
 var Doorbell = require("./controllers/Doorbell");
 var BackendConnector = require("./controllers/BackendConnector");
+var Doorlock = require("./controllers/Doorlock");
 
 var cam = new Camera();
 var bell = new Doorbell();
 var BackController = new BackendConnector();
-// app.use(express.statis('Data/img'))
+var lock = new Doorlock();
 
 // reply to request with "Hello World!"
 app.get("/", function(req, res) {
@@ -28,6 +30,18 @@ app.get("/", function(req, res) {
 
 //Camera module hangs
 
+app.get("/unlock", (req, res) => {
+  lock.unlockDoor(() => {
+    res.send("unlocked");
+  });
+});
+
+app.get("/lock", (req, res) => {
+  lock.lockDoor(() => {
+    res.send("locked");
+  });
+});
+
 app.get("/capture", (req, res) => {});
 
 app.post("/ring/:doorID", (req, res) => {
@@ -36,7 +50,9 @@ app.post("/ring/:doorID", (req, res) => {
   if (req.params.doorID) {
     cam.captureImage(imgCaptured => {
       if (imgCaptured) {
-        BackController.ringDoorBell("./img.jpg", "img", result => {
+        var img = fs.open("./img.jpg");
+
+        BackController.ringDoorBell(img, "img", result => {
           console.log(result);
           res.send(result);
         });
@@ -44,7 +60,7 @@ app.post("/ring/:doorID", (req, res) => {
         res.send("Error with camera please try again");
       }
     });
-  }else{
+  } else {
     res.send("doorID not found");
   }
 });

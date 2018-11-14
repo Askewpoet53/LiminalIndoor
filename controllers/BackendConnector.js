@@ -1,9 +1,10 @@
 class BackendConnector {
   constructor() {
-    this.url = "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api";
+    this.url =
+      "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api";
   }
 
-  ringDoorBell(img, imgName, callback) {
+  ringDoorBell(img, doorID, callback) {
     var axios = require("axios");
     var FormData = require("form-data");
 
@@ -11,7 +12,7 @@ class BackendConnector {
 
     data.append("img", img, imgName);
 
-    axios.post(this.url, data).then(response => {
+    axios.post(this.url + "/" + doorID, data).then(response => {
       console.log(response.data);
       callback(response.data);
     });
