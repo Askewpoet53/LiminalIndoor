@@ -1,31 +1,21 @@
-## A Simple Server with Node.js Express
+# Getting started with multicontainer on balena
 
-This is a simple skeleton Express server project that works on any of the [balena][balena-link] supported devices.
+This example will get you up and running quickly with a multicontainer setup on balena. The application creates a plot of your device's CPU load average and memory usage at the device's public URL, which is piped over using websockets. The system is composed of a simple static site server, a websocket server, and a proxy. These 3 components are defined in the [docker-compose.yml](docker-compose.yml) as services and are only given as much privilege as is needed.
 
-This project serves up `"Hello World!"` on port `:80` of your balena device.
+To get this project up and running, you'll need to [sign up](https://dashboard.balena-cloud.com/signup) for a balena account, create a microservices or starter application, and provision a device (device specific instructions can be found in our [getting started guide](https://balena.io/docs/getting-started).
 
-To get this project up and running, you will need to signup for a balena account [here][signup-page] and set up a device, have a look at our [Getting Started tutorial][gettingStarted-link]. Once you are set up with balena, you will need to clone this repo locally:
+*Note: Multicontainer functionality requires balenaOS v2.12.0 or higher. If you do not see an option to choose a microservices or starter application type, a supported OS version has not yet been released for the selected device type.*
+
+Once you are set up, clone this repo locally:
 ```
-$ git clone git@github.com:balena-projects/simple-server-node.git
+$ git clone git@github.com:balena-io-projects/multicontainer-getting-started.git
 ```
-Then add your balena application remote repository to your local repository:
+Copy the command in the upper-right corner of your application dashboard to add your remote repository:
 ```
 $ git remote add balena username@git.balena-cloud.com:username/myapp.git
 ```
-and push the code to the newly added remote:
+Finally, push the code to the newly added remote:
 ```
 $ git push balena master
 ```
-It should take a few minutes for the code to push. While you wait, lets enable device URLs so we can see the server outside of our local network. This option can be found in the `Actions` tab in your device dashboard.
-
-![Actions Tab](/img/enable-public-URLs.png)
-
-Once the device is updated, you should see this in your logs:
-![log output](/img/log-output.png)
-
-Then in your browser you should be able to open the device URL and see the message "Hello World!".
-
-
-[balena-link]:https://balena.io/
-[signup-page]:https://dashboard.balena-cloud.com/signup
-[gettingStarted-link]:http://balena.io/docs/learn/getting-started/
+It should take a few minutes for your project to build. While you wait, you can enable device URLs, so you can see the server outside of our local network. This option can be found in the *Actions* drop down in your device dashboard.
