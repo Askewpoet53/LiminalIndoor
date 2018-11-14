@@ -39,17 +39,17 @@ class DoorLock {
     //Set up Servof
     this.Gpio = require("pigpio").Gpio;
     this.motor = new Gpio(motorPin, { mode: Gpio.OUTPUT });
-    this.button = new Gpio(buttonPin, {
-      mode: Gpio.INPUT,
-      pullUpDown: Gpio.PUD_DOWN,
-      edge: Gpio.FALLING_EDGE
-    });
-    this.led = new Gpio(ledPin, { mode: Gpio.OUTPUT });
+    // this.button = new Gpio(buttonPin, {
+    //   mode: Gpio.INPUT,
+    //   pullUpDown: Gpio.PUD_DOWN,
+    //   edge: Gpio.FALLING_EDGE
+    // });
+    // this.led = new Gpio(ledPin, { mode: Gpio.OUTPUT });
   }
 
   lockDoor(callback) {
     this.motor.servoWrite(lockedState);
-    this.led.digitalWrite(1);
+    // this.led.digitalWrite(1);
     this.locked = true;
 
     callback("Door locked");
@@ -61,7 +61,7 @@ class DoorLock {
   }
   unlockDoor(callback) {
     this.motor.servoWrite(unlockedState);
-    this.led.digitalWrite(0);
+    // this.led.digitalWrite(0);
     this.locked = false;
 
     //notify
