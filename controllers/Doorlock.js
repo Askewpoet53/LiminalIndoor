@@ -59,7 +59,7 @@ class DoorLock {
   unlockDoor(callback) {
     this.motor.writeSync(this.unlockedState);
     this.locked = false;
-    callback("door locked");
+    callback("door unlocked");
 
     setTimeout(() => {
       this.motor.unexport();

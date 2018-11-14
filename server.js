@@ -18,7 +18,7 @@ var BackendConnector = require("./controllers/BackendConnector");
 var Doorlock = require("./controllers/Doorlock");
 
 var cam = new Camera();
-var bell = new Doorbell();
+// var bell = new Doorbell();
 var BackController = new BackendConnector();
 var lock = new Doorlock();
 

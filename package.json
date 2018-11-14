@@ -19,9 +19,6 @@
   "author": "Nate",
   "license": "ISC",
   "dependencies": {
-    "audio-loader": "^1.0.3",
-    "audio-play": "^2.2.1",
-    "audio-player": "^1.1.0",
     "onoff": "*",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
