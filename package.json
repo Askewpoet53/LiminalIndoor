@@ -22,6 +22,8 @@
     "audio-loader": "^1.0.3",
     "audio-play": "^2.2.1",
     "audio-player": "^1.1.0",
+    "rpi-gpio":"*",
+    "gpio-promise": "*",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
