@@ -36,9 +36,9 @@ class DoorLock {
 
     this.locked = true;
 
-    //Set up Servo
-    this.Gpio = require("onoff").Gpio;
-    this.motor = new Gpio(this.motorPin, "out");
+    //Set up Servof
+    this.Gpio = require("pigpio").Gpio;
+    this.motor = new Gpio(motorPin, { mode: Gpio.OUTPUT });
     // this.button = new Gpio(buttonPin, {
     //   mode: Gpio.INPUT,
     //   pullUpDown: Gpio.PUD_DOWN,
@@ -48,21 +48,28 @@ class DoorLock {
   }
 
   lockDoor(callback) {
-    this.motor.writeSync(this.lockedState);
+    this.motor.servoWrite(lockedState);
+    // this.led.digitalWrite(1);
     this.locked = true;
-    callback("door locked");
 
-    setTimeout(() => {
-      this.motor.unexport();
+    callback("Door locked");
+
+    //After 1.5 seconds, the door lock servo turns off to avoid stall current
+    setTimeout(function() {
+      this.motor.servoWrite(0);
     }, 1500);
   }
   unlockDoor(callback) {
-    this.motor.writeSync(this.unlockedState);
+    this.motor.servoWrite(unlockedState);
+    // this.led.digitalWrite(0);
     this.locked = false;
-    callback("door unlocked");
 
-    setTimeout(() => {
-      this.motor.unexport();
+    //notify
+    callback("Door has been unlocked!");
+
+    //After 1.5 seconds, the door lock servo turns off to avoid stall current
+    setTimeout(function() {
+      this.motor.servoWrite(0);
     }, 1500);
   }
 }
