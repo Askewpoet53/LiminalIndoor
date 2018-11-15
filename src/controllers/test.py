@@ -3,11 +3,12 @@ from time import sleep
 
 
 def run():
+    print("in test run...")
     GPIO.setmode(GPIO.BCM)
     motorPin = 14
     GPIO.setup(motorPin, GPIO.OUT)
-    # print(".. Motor setup...")
     motor = GPIO.PWM(motorPin, 50)
+    print(".. Motor setup...")
     # GPIO.output(motorPin, True)
 
     motor.start(0)
