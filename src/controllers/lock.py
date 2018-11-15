@@ -4,13 +4,13 @@ import RPi.GPIO as GPIO
 class lock(object):
     def __init__(self):
         print("creating lock class...")
-        print(GPIO)
         try:
-            GPIO.setMode(GPIO.BCM)
+            GPIO.setmode(GPIO.BCM)
         except RuntimeError:
             print("error")
         # self.gpio = GPIO
         self.motorPin = 14
+        print(GPIO.getmode())
 
     def test(self):
         print("... in lock.test()")
