@@ -1,11 +1,11 @@
 import sys
+import time
+import RPi.GPIO as GPIO
 
 
 def main(argv):
 	lock = argv[1]
 	print(lock)
-	import time
-	import RPi.GPIO as GPIO
 
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setwarnings(False)
@@ -23,7 +23,6 @@ def main(argv):
 		p.ChangeDutyCycle(12)
 
 	p.stop()
-
 	GPIO.cleanup()
 
 
