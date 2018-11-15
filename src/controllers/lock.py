@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO
 
 class lock(object):
     def __init__(self):
-        print("created lock class...")
+        print("creating lock class...")
+        print(GPIO)
         try:
             GPIO.setMode(GPIO.BCM)
         except RuntimeError:

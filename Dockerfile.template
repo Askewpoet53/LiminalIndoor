@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -yq \
     alsa-utils libasound2-dev && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN sudo apt-get update && sudo apt-get upgrade
+RUN sudo apt-get upgrade
 
 # Set our working directory
 WORKDIR /usr/src/app
