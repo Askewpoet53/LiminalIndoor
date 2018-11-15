@@ -1,13 +1,21 @@
 from flask import Flask
 app = Flask(__name__)
 
+
+
 @app.route('/')
 def hello_world():
     return 'Hello World!'
 
-@app.route('/lock')
-def lock():
-    return 'locking'
+@app.route('/testservo')
+def testServo():
+    from controllers.lock import lock
+    
+    lock = lock()
+
+    lock.test()
+
+    return 'testing'
 
 @app.route('/unlock')
 def unlock():
