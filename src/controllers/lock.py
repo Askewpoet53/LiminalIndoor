@@ -1,14 +1,10 @@
 import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BOARD)
 
 class lock(object):
     def __init__(self):
         print("creating lock class...")
-        # try:
-    ````GPIO.setmode(GPIO.BOARD)
-        # except RuntimeError:
-        # print("error")
-        # self.gpio = GPIO
         self.motorPin = 14
         print(GPIO.getmode())
 
