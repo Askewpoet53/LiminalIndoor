@@ -16,8 +16,10 @@ def main(argv):
 	p.start(0)
 
 	if lock == "True":
-		p.ChangeDutyCycle(7)
+		print("locking")
+		p.ChangeDutyCycle(2)
 	else:
+		print("unlocking")
 		p.ChangeDutyCycle(12)
 
 	p.stop()
