@@ -5,9 +5,9 @@ class lock(object):
     def __init__(self):
         print("creating lock class...")
         # try:
-            GPIO.setmode(GPIO.BOARD)
+    ````GPIO.setmode(GPIO.BOARD)
         # except RuntimeError:
-            print("error")
+        # print("error")
         # self.gpio = GPIO
         self.motorPin = 14
         print(GPIO.getmode())
