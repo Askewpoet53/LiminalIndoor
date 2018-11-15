@@ -8,7 +8,7 @@ def run():
     GPIO.setup(motorPin, GPIO.OUT)
     # print(".. Motor setup...")
     motor = GPIO.PWM(motorPin, 50)
-    
+    GPIO.output(motorPin, True)
 
     motor.ChangeDutyCycle(5)
     motor.ChangeDutyCycle(0)
@@ -22,5 +22,6 @@ def run():
     motor.ChangeDutyCycle(0)
     motor.ChangeDutyCycle(10)
     motor.ChangeDutyCycle(0)
+    GPIO.output(motorPin, False)
     sleep(2)
     GPIO.cleanup()
