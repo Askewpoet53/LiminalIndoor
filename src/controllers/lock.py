@@ -3,13 +3,16 @@ import RPi.GPIO as GPIO
 
 class lock(object):
     def __init__(self):
+        print("created lock class...")
         GPIO.setMode(GPIO.BCM)
         # self.gpio = GPIO
         self.motorPin = 14
-    
+
 
     def test(self):
+        print("... in lock.test()")
         GPIO.setup(self.motorPin, GPIO.OUT)
+        print(".. Motor setup...")
 
         motor = GPIO.PWM(self.motorPin, 50)
 
@@ -24,5 +27,6 @@ class lock(object):
         motor.ChangeDutyCycle(5)
         motor.ChangeDutyCycle(2.5)
         
+        print("...Cleaning Resources")
         motor.stop()
         GPIO.cleanup()

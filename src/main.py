@@ -9,6 +9,7 @@ def hello_world():
 
 @app.route('/testServo')
 def testServo():
+    print("testing servo...")
     from controllers.lock import lock
     
     lock = lock()
