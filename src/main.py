@@ -1,5 +1,5 @@
-import controllers.lock as lock
-import controllers.unlock as unlock
+import controllers.lock as lockScript
+import controllers.unlock as unlockScript
 
 from flask import Flask
 
@@ -13,13 +13,13 @@ def hello_world():
 
 @app.route("/unlock")
 def unlock():
-    unlock.run()
+    unlockScript.run()
     return "unlocking"
 
 
 @app.route("/lock")
 def lock():
-    lock.run()
+    lockScript.run()
     return "locking"
 
 
