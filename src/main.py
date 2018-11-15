@@ -1,4 +1,5 @@
 from flask import Flask
+import RPi.GPIO as GPIO
 
 app = Flask(__name__)
 
@@ -11,9 +12,22 @@ def hello_world():
 @app.route("/testServo")
 def testServo():
     print("testing servo...")
-    from controllers import test
-
-    test.run()
+    GPIO.setmode(GPIO.BOARD)
+    motorPin = 14
+    GPIO.setup(motorPin, GPIO.OUT)
+    motor = GPIO.PWM(motorPin, 50)
+    motor.start(0)  # Initialization
+    motor.ChangeDutyCycle(5)
+    motor.ChangeDutyCycle(7.5)
+    motor.ChangeDutyCycle(10)
+    motor.ChangeDutyCycle(12.5)
+    motor.ChangeDutyCycle(10)
+    motor.ChangeDutyCycle(7.5)
+    motor.ChangeDutyCycle(5)
+    motor.ChangeDutyCycle(2.5)
+    print("...Cleaning Resources")
+    motor.stop()
+    GPIO.cleanup()
     return "testing"
 
 
