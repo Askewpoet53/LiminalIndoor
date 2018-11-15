@@ -4,6 +4,8 @@ import sys
 def main(argv):
     lock = argv[1]
 
+	print(lock)
+
     import time
     import RPi.GPIO as GPIO
 
