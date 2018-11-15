@@ -10,6 +10,8 @@ def run():
     motor = GPIO.PWM(motorPin, 50)
     GPIO.output(motorPin, True)
 
+    motor.start(0)
+
     motor.ChangeDutyCycle(5)
     motor.ChangeDutyCycle(0)
     motor.ChangeDutyCycle(10)

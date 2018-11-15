@@ -11,6 +11,8 @@ def run():
     GPIO.output(motorPin, True)
     duty = 90 / 18 + 2
 
+    motor.start(0)
+
     motor.ChangeDutyCycle(duty)
     # sleep(2)
     motor.ChangeDutyCycle(0)
