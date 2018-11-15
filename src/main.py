@@ -7,7 +7,7 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/testservo')
+@app.route('/testServo')
 def testServo():
     from controllers.lock import lock
     

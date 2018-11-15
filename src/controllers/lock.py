@@ -6,7 +6,7 @@ class lock(object):
         GPIO.setMode(GPIO.BCM)
         # self.gpio = GPIO
         self.motorPin = 14
-
+    
 
     def test(self):
         GPIO.setup(self.motorPin, GPIO.OUT)
