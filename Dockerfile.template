@@ -2,6 +2,8 @@
 # see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
 FROM resin/%%RESIN_MACHINE_NAME%%-python:3
 
+ENV READTHEDOCS True
+
 # use apt-get if you need to install dependencies,
 # for instance if you need ALSA sound utils, just uncomment the lines below.
 # RUN apt-get update && apt-get install -yq \
@@ -23,7 +25,7 @@ COPY . ./
 
 # switch on systemd init system in container
 ENV INITSYSTEM on
-ENV READTHEDOCS True
+
 
 # main.py will run when container starts up on the device
 CMD ["python","-u","src/main.py"]
