@@ -12,3 +12,4 @@ def run():
     motor.ChangeDutyCycle(duty)
     sleep(1)
     GPIO.output(motorPin, False)
+    GPIO.cleanup()
