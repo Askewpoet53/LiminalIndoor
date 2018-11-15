@@ -1,5 +1,6 @@
 import controllers.lock as lockScript
 import controllers.unlock as unlockScript
+import controllers.test as testScript
 
 from flask import Flask
 
@@ -22,6 +23,11 @@ def lock():
     lockScript.run()
     return "locking"
 
+
+@app.route("/test")
+def test():
+    testScript.run()
+    return "testing"
 
 @app.route("/ring")
 def ring():
