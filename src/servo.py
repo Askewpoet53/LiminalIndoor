@@ -26,7 +26,7 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 5:
+    if len(sys.argv) < 1:
         print("servo.py <lock?>")
     else:
         main(sys.argv)
