@@ -4,9 +4,9 @@ import RPi.GPIO as GPIO
 class lock(object):
     def __init__(self):
         print("creating lock class...")
-        try:
-            GPIO.setmode(GPIO.BCM)
-        except RuntimeError:
+        # try:
+            GPIO.setmode(GPIO.BOARD)
+        # except RuntimeError:
             print("error")
         # self.gpio = GPIO
         self.motorPin = 14
@@ -19,7 +19,7 @@ class lock(object):
 
         motor = GPIO.PWM(self.motorPin, 50)
 
-        motor.start(2.5)  # Initialization
+        motor.start(0)  # Initialization
 
         motor.ChangeDutyCycle(5)
         motor.ChangeDutyCycle(7.5)
