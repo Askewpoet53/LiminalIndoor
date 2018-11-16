@@ -12,14 +12,14 @@ def hello_world():
 @app.route("/unlock")
 def unlock():
     # unlockScript.run()
-    os.system("python src/servo.py True")
+    os.system("sudo python src/servo.py True")
     return "unlocking"
 
 
 @app.route("/lock")
 def lock():
     # lockScript.run()
-    os.system("python src/servo.py False")
+    os.system("sudo python src/servo.py False")
     return "locking"
 
 
