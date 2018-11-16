@@ -8,7 +8,6 @@ def main(argv):
 	print(lock)
 
 	GPIO.setmode(GPIO.BCM)
-	GPIO.setwarnings(False)
 	GPIO.setup(14, GPIO.OUT)
 
 	p = GPIO.PWM(14, 50)
