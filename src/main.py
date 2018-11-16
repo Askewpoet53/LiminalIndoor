@@ -1,5 +1,5 @@
 from flask import Flask
-import os
+import subprocess
 
 app = Flask(__name__)
 
@@ -12,14 +12,14 @@ def hello_world():
 @app.route("/unlock")
 def unlock():
     # unlockScript.run()
-    os.system("sudo python src/servo.py True")
+    subprocess.run("python src/servo.py True")
     return "unlocking"
 
 
 @app.route("/lock")
 def lock():
     # lockScript.run()
-    os.system("sudo python src/servo.py False")
+    subprocess.run("python src/servo.py False")
     return "locking"
 
 
