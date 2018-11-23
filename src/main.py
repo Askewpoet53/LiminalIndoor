@@ -1,5 +1,7 @@
 from flask import Flask
 import subprocess
+import time
+import picamera
 
 app = Flask(__name__)
 
@@ -12,7 +14,12 @@ def hello_world():
 @app.route("/doorbell")
 def doorbell():
 
-    subprocess.run("python src/controllers/camera.py")
+    with picamera.PiCamera() as camera:
+        camera.resolution = (1024, 768)
+        camera.start_preview()
+        # Camera warm-up time
+        time.sleep(2)
+        camera.capture('peephole.jpg') 
 
     return"doorbell"
 
