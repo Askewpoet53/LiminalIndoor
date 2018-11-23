@@ -12,14 +12,14 @@ def hello_world():
 @app.route("/unlock")
 def unlock():
     # unlockScript.run()
-    subprocess.run("python servo.py True")
+    subprocess.run("python src/unlockdoor.py True")
     return "unlocking"
 
 
 @app.route("/lock")
 def lock():
     # lockScript.run()
-    subprocess.run("python servo.py False")
+    subprocess.run("python src/lockdoor.py False")
     return "locking"
 
 
