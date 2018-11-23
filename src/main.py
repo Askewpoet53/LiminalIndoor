@@ -13,7 +13,7 @@ def hello_world():
 
 @app.route("/doorbell")
 def doorbell():
-    subprocess.run("raspistill -o peephole.jpg");
+    subprocess.run("raspistill -o peephole");
     return "doorbell"
 
 @app.route("/unlock")
