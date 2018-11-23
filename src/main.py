@@ -1,7 +1,5 @@
 from flask import Flask
-import os
-from subprocess import Popen
-
+import subprocess
 
 app = Flask(__name__)
 
@@ -11,20 +9,24 @@ def hello_world():
     return "Hello World!"
 
 
+@app.route("/doorbell")
+def doorbell():
+
+    subprocess.run("python src/controllers/camera.py")
+
+    return"doorbell"
+
 @app.route("/unlock")
 def unlock():
     # unlockScript.run()
-    devnull = open(os.devnull, 'wb') # in python < 3.3
-    Popen(['nohup', 'src/unlockdoor.py'], stdout=devnull, stderr=devnull)
+    subprocess.run("sudo python src/unlockdoor.py")
     return "unlocking"
 
 
 @app.route("/lock")
 def lock():
     # lockScript.run()
-    devnull = open(os.devnull, 'wb') # in python < 3.3
-    Popen(['nohup', 'src/lockdoor.py'], stdout=devnull, stderr=devnull)
-    
+    subprocess.run("sudo python src/lockdoor.py")
     return "locking"
 
 

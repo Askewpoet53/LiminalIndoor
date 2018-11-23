@@ -1,15 +1,9 @@
-from picamera import PiCamera
-import datetime
+import time
+import picamera
 
-
-class camera_control(object):
-    def __init__(self):
-        self.camera = PiCamera()
-        self.camera.resolution = (1024, 768)
-        self.camera.start_preview()
-
-    def snap(self, callback):
-        self.camera.capture("img.jpg")
-        print(datetime.datetime.now())
-        callback("stuff")
-
+with picamera.PiCamera() as camera:
+    camera.resolution = (1024, 768)
+    camera.start_preview()
+    # Camera warm-up time
+    time.sleep(2)
+    camera.capture('peephole.jpg')
