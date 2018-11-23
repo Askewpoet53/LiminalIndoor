@@ -1,9 +1,9 @@
-import sys
-import time
-import RPi.GPIO as GPIO
 
 
 def main(argv):
+	import sys
+	import time
+	import RPi.GPIO as GPIO
 	lock = argv[1]
 	print(lock)
 
