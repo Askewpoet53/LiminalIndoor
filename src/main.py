@@ -22,10 +22,10 @@ def doorbell(door_id):
 
     data = {"img": peephole_img}
 
-    print("... creating request to backend")
+    print("... creating request to backend " + door_id)
 
     r = requests.post(
-        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/"
+        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api"
         + "doorbell/"
         + door_id,
         data=data,
@@ -50,7 +50,7 @@ def pin(door_id):
     data = {"img": peephole_img}
 
     r = requests.post(
-        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/"
+        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api"
         + "pin/"
         + door_id,
         data=data,
