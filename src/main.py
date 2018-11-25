@@ -21,8 +21,8 @@ def doorbell(door_id):
     peephole_img = open("peephole.jpg")
 
     data = {"img": peephole_img}
-
-    print("... creating request to backend " + peephole_img)
+    print(peephole_img.errors)
+    print("... creating request to backend ")
 
     r = requests.post(
         "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api"
