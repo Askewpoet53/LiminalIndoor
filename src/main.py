@@ -31,9 +31,11 @@ def doorbell(door_id):
         files=data,
     )
 
-    print(r.json())
+    print(r.status_code)
 
-    return r.json()
+    # print(r.json())
+
+    return "testing"
 
 
 @app.route("/pin/<door_id>")
