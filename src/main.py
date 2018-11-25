@@ -18,7 +18,7 @@ def doorbell(door_id):
         camera.capture("peephole.jpg")
         print("...picture captured")
 
-    peephole_img = open("peephole.jpg")
+    peephole_img = open("peephole.jpg", "rb")
 
     data = {"img": peephole_img}
     print(peephole_img.errors)
@@ -28,7 +28,7 @@ def doorbell(door_id):
         "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api"
         + "doorbell/"
         + door_id,
-        data=data,
+        files=data,
     )
 
     print(r.json())
