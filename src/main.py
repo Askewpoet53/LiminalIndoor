@@ -26,6 +26,8 @@ def doorbell(door_id):
     
     response = r.json()
 
+    print(response)
+
     return response.data
 
 
