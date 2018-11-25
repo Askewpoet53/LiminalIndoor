@@ -31,13 +31,10 @@ def doorbell(door_id):
     )
 
     # r = requests.post(url, files=data)
-    r = requests.get(url)
+    r = requests.get(url).content
+    print(r)
 
-    print(r.status_code + " " + r.json())
-
-    # print(r.json())
-
-    return "testing"
+    return r
 
 
 @app.route("/pin/<door_id>")
