@@ -24,14 +24,16 @@ def doorbell(door_id):
     print(peephole_img)
     print("... creating request to backend ")
 
-    r = requests.post(
-        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api"
-        + "doorbell/"
-        + door_id,
-        files=data,
+    url = (
+        # "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/doorbell/"
+        # + door_id
+        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/ping"
     )
 
-    print(r.status_code)
+    # r = requests.post(url, files=data)
+    r = requests.get(url)
+
+    print(r.status_code + " " + r.json())
 
     # print(r.json())
 
