@@ -32,14 +32,8 @@ def doorbell(door_id):
         continue
 
     response = r.json()
-    if response.validated:
-        # call unlock script
-        print("user validated")
-    else:
-        # call lock script
-        print("user not validated")
 
-    return response.message
+    return response.data
 
 
 @app.route("/pin/<string:door_id>")
