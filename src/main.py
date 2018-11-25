@@ -6,10 +6,8 @@ import requests
 
 app = Flask(__name__)
 
-API_LINK = "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/"
 
-
-@app.route("/doorbell/<string:door_id>")
+@app.route("/doorbell/<door_id>")
 def doorbell(door_id):
     with picamera.PiCamera() as camera:
         camera.resolution = (1024, 768)
@@ -21,9 +19,14 @@ def doorbell(door_id):
     peephole_img = open("peephole.jpg")
 
     data = {"img": peephole_img}
-    
-    r = requests.post(API_LINK + "doorbell/" + door_id, data=data)
-    
+
+    r = requests.post(
+        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/"
+        + "doorbell/"
+        + door_id,
+        data=data,
+    )
+
     response = r.json()
 
     print(response)
@@ -31,7 +34,7 @@ def doorbell(door_id):
     return response.data
 
 
-@app.route("/pin/<string:door_id>")
+@app.route("/pin/<door_id>")
 def pin(door_id):
     with picamera.PiCamera() as camera:
         camera.resolution = (1024, 768)
@@ -44,7 +47,12 @@ def pin(door_id):
 
     data = {"img": peephole_img}
 
-    r = requests.post(API_LINK + "pin/" + door_id, data=data)
+    r = requests.post(
+        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/"
+        + "pin/"
+        + door_id,
+        data=data,
+    )
 
     response = r.json()
     if response.validated:
