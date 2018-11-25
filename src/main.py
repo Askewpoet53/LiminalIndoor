@@ -9,16 +9,20 @@ app = Flask(__name__)
 
 @app.route("/doorbell/<door_id>")
 def doorbell(door_id):
+    print("Doorbell request...")
     with picamera.PiCamera() as camera:
         camera.resolution = (1024, 768)
         camera.start_preview()
         # Camera warm-up time
         time.sleep(2)
         camera.capture("peephole.jpg")
+        print("...picture captured")
 
     peephole_img = open("peephole.jpg")
 
     data = {"img": peephole_img}
+
+    print("... creating request to backend")
 
     r = requests.post(
         "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/"
@@ -27,11 +31,9 @@ def doorbell(door_id):
         data=data,
     )
 
-    response = r.json()
+    print(r.json())
 
-    print(response)
-
-    return response.data
+    return r.json()
 
 
 @app.route("/pin/<door_id>")
