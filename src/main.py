@@ -21,7 +21,7 @@ def doorbell(door_id):
     peephole_img = open("peephole.jpg", "rb")
 
     data = {"img": peephole_img}
-    print(peephole_img.errors)
+    print(peephole_img)
     print("... creating request to backend ")
 
     r = requests.post(
