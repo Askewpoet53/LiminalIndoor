@@ -15,10 +15,10 @@ def doorbell(door_id):
         camera.start_preview()
         # Camera warm-up time
         time.sleep(2)
-        camera.capture("peephole.jpg")
+        camera.capture("img.jpg")
         print("...picture captured")
 
-    peephole_img = open("peephole.jpg", "rb")
+    peephole_img = open("img.jpg", "rb")
 
     data = {"img": peephole_img}
     print(peephole_img)
