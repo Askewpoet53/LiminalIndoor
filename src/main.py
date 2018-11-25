@@ -20,7 +20,7 @@ def doorbell(door_id):
 
     files = {"img": open("img.jpg", "rb")}
 
-    headers = {"Content-type": "multipart/form-data"}
+    headers = {"Content-type": "multipart/JSON"}
 
     print("... creating request to backend ")
 
