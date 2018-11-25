@@ -1,48 +1,71 @@
 from flask import Flask
 import subprocess
 import time
+import pygame
 import picamera
+import requests
 
 app = Flask(__name__)
 
-
-@app.route("/")
-def hello_world():
-    return "Hello World!"
+API_LINK = "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/"
 
 
-@app.route("/doorbell")
-def doorbell():
+@app.route("/doorbell/<string:door_id>")
+def doorbell(door_id):
     with picamera.PiCamera() as camera:
         camera.resolution = (1024, 768)
         camera.start_preview()
         # Camera warm-up time
         time.sleep(2)
-        camera.capture('peephole.jpg')
-    return "doorbell"
+        camera.capture("peephole.jpg")
 
-@app.route("/unlock")
-def unlock():
-    # unlockScript.run()
-    subprocess.run("sudo python src/unlockdoor.py")
-    return "unlocking"
+    peephole_img = open("peephole.jpg")
+
+    data = {"img": peephole_img}
+
+    r = requests.post(API_LINK + "doorbell/" + door_id, data=data)
+
+    pygame.mixer.init()
+    pygame.mixer.music.load("Sound Effect Doorbell.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy() == True:
+        continue
+
+    response = r.json()
+    if response.validated:
+        # call unlock script
+        print("user validated")
+    else:
+        # call lock script
+        print("user not validated")
+
+    return response.message
 
 
-@app.route("/lock")
-def lock():
-    # lockScript.run()
-    subprocess.run("sudo python src/lockdoor.py")
-    return "locking"
+@app.route("/pin/<string:door_id>")
+def pin(door_id):
+    with picamera.PiCamera() as camera:
+        camera.resolution = (1024, 768)
+        camera.start_preview()
+        # Camera warm-up time
+        time.sleep(2)
+        camera.capture("peephole.jpg")
 
+    peephole_img = open("peephole.jpg")
 
-@app.route("/test")
-def test():
-    
-    return "testing"
+    data = {"img": peephole_img}
 
-@app.route("/ring")
-def ring():
-    return "ringing"
+    r = requests.post(API_LINK + "pin/" + door_id, data=data)
+
+    response = r.json()
+    if response.validated:
+        # call unlock script
+        print("user validated")
+    else:
+        # call lock script
+        print("user not validated")
+
+    return response.message
 
 
 if __name__ == "__main__":
