@@ -18,8 +18,10 @@ def doorbell(door_id):
         camera.capture("img.jpg")
         print("...picture captured")
 
-    files = {'img': open("img.jpg", "rb")}
-    
+    files = {"img": open("img.jpg", "rb")}
+
+    headers = {"Content-type": "multipart/form-data"}
+
     print("... creating request to backend ")
 
     url = (
@@ -28,7 +30,7 @@ def doorbell(door_id):
         # "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/ping"
     )
 
-    r = requests.post(url, files=files).content
+    r = requests.post(url, files=files, headers=headers).content
     # r = requests.get(url).content
 
     print(r)
