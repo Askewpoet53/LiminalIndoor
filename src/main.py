@@ -1,7 +1,8 @@
 from flask import Flask
 import subprocess
 import time
-import pygame
+import pyaudio
+import wave
 import picamera
 import requests
 
@@ -22,15 +23,9 @@ def doorbell(door_id):
     peephole_img = open("peephole.jpg")
 
     data = {"img": peephole_img}
-
+    
     r = requests.post(API_LINK + "doorbell/" + door_id, data=data)
-
-    pygame.mixer.init()
-    pygame.mixer.music.load("Sound Effect Doorbell.mp3")
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy() == True:
-        continue
-
+    
     response = r.json()
 
     return response.data
@@ -65,3 +60,29 @@ def pin(door_id):
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
 
+
+def bell():
+    CHUNK = 1024
+    wf = wave.open('ring.wav', "rb")
+    # instantiate PyAudio (1)
+    p = pyaudio.PyAudio()
+
+    # open stream (2)
+    stream = p.open(
+        format=p.get_format_from_width(wf.getsampwidth()),
+        channels=wf.getnchannels(),
+        rate=wf.getframerate(),
+        output=True,
+    )
+
+    # read data
+    data = wf.readframes(CHUNK)
+
+    # play stream (3)
+    while len(data) > 0:
+        stream.write(data)
+        data = wf.readframes(CHUNK)
+
+    # stop stream (4)
+    stream.stop_stream()
+    stream.close()
