@@ -37,7 +37,9 @@ def doorbell(door_id):
         # "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/ping"
     )
 
-    r = requests.post(url, json=files).content
+    print(url)
+
+    r = requests.post(url, files=files).content
     # r = requests.get(url).content
 
     print(r)
