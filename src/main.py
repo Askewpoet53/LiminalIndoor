@@ -28,13 +28,13 @@ def doorbell(door_id):
     print(open('img.jpg','rb'))
 
     url = (
-        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/doorbell/"
-        + door_id
-        # "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/ping"
+        # "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/doorbell/"
+        # + door_id
+        "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/ping"
     )
 
-    r = requests.post(url, files=files).content
-    # r = requests.get(url).content
+    # r = requests.post(url, files=files).content
+    r = requests.get(url).content
 
     print(r)
 
