@@ -18,7 +18,9 @@ def doorbell(door_id):
         camera.capture("img.jpg")
         print("...picture captured")
 
-    files = {'img': open('img.jpg', 'rb')}
+    file = open('img.jpg',"rb")
+
+    files = {'img': file.readall()}
 
     print("... creating request to backend ")
 
