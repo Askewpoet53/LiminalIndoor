@@ -39,7 +39,7 @@ def doorbell(door_id):
 
     print(url)
 
-    r = requests.post(url, files=files).content
+    r = requests.post(url, data=files).content
     # r = requests.get(url).content
 
     print(r)
