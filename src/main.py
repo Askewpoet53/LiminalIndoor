@@ -22,6 +22,8 @@ def doorbell(door_id):
 
     files = {'img': file.readall()}
 
+    file.close()
+
     print("... creating request to backend ")
 
     print(files)
