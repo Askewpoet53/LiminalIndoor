@@ -18,9 +18,12 @@ def doorbell(door_id):
         camera.capture("img.jpg")
         print("...picture captured")
 
-    files = {'img.jpg': open('img.jpg', 'rb')}
+    files = {'img': open('img.jpg', 'rb')}
 
     print("... creating request to backend ")
+
+    print(files)
+    print(open('img.jpg','rb'))
 
     url = (
         "https://bffb941270be7a5179d6130698ccefd2.balena-devices.com/api/doorbell/"
